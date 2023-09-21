@@ -1,0 +1,20 @@
+.main {
+  margin-left: 30px;
+}
+
+#listName {
+  font-size: 40px;
+}
+
+.listItemBox {
+  border: solid black 3px;
+  display: flex;
+  flex-direction: row;
+  align-content: center;
+}
+
+.checkboxIcon {
+  height: 20px;
+  margin-right: 10px;
+  margin-left: 5px;
+}/*# sourceMappingURL=style.css.map */
