@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
     <meta charset="UTF-8">
@@ -10,27 +11,53 @@
 <body>
    <div class="all">
     <nav class="navigation">
-
-    </nav>
-    <div class="main">
-        <div id="col-sm-3 listName">
-            test
+        <img src="lines.png" alt="" class="lineIcon">
+        <div class="navigationBar">
+        <div id="createNewButton" onclick="openPopUp()">Create New</div>  <!--onclick="openPopUp()"-->
+        <div id="peekaboo">
+            <div><!--addd tailwind you whreo-->
+                <div>New List Name Here: </div>
+                <div>x</div>
+            </div>
+            <input id="listNameInput">
+            <button id="listNameButton">Done</button>
         </div>
+        <div>My lists: </div>
+        <div class="listOfLists">
+
+        </div>
+        </div>
+    </nav>
+    
+
+    <div class="main">
+        <div id="listTitle">test</div>
         <div class="col">
             <div class="col-sm-4 col-md-8 col-lg-6 listItemBox">
-                <img src="8664870_square_shape_icon.png" alt="" class="checkboxIcon">
+                <button><img src="normalBox.png" alt="" id="checkboxIcon"></button>
                 <p class="listItem">Get driver's license</p>
             </div>
             <div class="col-sm-4 listItemBox">
-                <img src="8664870_square_shape_icon.png" alt="" class="checkboxIcon">
+                <img src="normalBox.png" alt="" id="checkboxIcon">
                 <p class="listItem">Get a life</p>
             </div>
             <div class="col-sm-4 listItemBox">
-                <img src="8664870_square_shape_icon.png" alt="" class="checkboxIcon">
+                <img src="normalBox.png" alt="" id="checkboxIcon">
                 <p class="listItem">Die</p>
             </div>
         </div>
     </div>
    </div>
+   <script defer src="todoApp.js"></script>
+   <!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>-->
 </body>
 </html>
+
+
+<!--function openPopUp() {
+
+    
+    
+    createPopUp.classList.toggle('createNewPopUp');
+}
+openPopUp();-->
