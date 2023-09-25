@@ -46,6 +46,16 @@ $myPink: #ffc0cb;
    position: absolute;
    margin-left: 70%;
    z-index: 1;
+   border-radius: 20px;
+   div {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin: 10px;
+    button {
+        color: $myTeal;
+    }
+   }
 }
 .navigationBar {
     background-color: $myTeal;

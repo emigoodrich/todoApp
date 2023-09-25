@@ -1,3 +1,4 @@
+var listNameInput = document.getElementById('listNameInput');
 
 var createNewButton = document.getElementById('createNewButton');
 var originalPopUp = document.getElementById('peekaboo');
@@ -24,17 +25,20 @@ function navBarToggle() {
     }
 }
 
-
-
-
-
-
-
-let listNameInput = document.getElementById('listNameInput');
-let listNameButton = document.getElementById('listNameButton');
-const theList = {
-
+function closeXButton() {
+    if (originalPopUp.className === 'createNewPopUp') {
+        originalPopUp.className = 'hidden';
+        listNameInput.value = "";
+    }
 }
+
+
+
+
+
+
+let listNameButton = document.getElementById('listNameButton');
+
 
 
 listNameButton.addEventListener('click', function creatingListName() {
@@ -45,5 +49,24 @@ listNameButton.addEventListener('click', function creatingListName() {
 
 
 const listOfLists = {
-    
+    1: {name: 'First lisjt'},
+    2: {name: 'what ill do for college'},
+    3: {name: 'history of pizza'}
 }
+
+const groupOfLists = {
+    1: {
+        name: 'first list', 
+        todos: [
+            {
+                text: 'cats',
+                completed: false
+            },
+            {
+                text: 'phone',
+                complete: false
+            }
+        ]
+    }
+}
+const theList = groupOfLists[0];

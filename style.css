@@ -49,6 +49,16 @@
   position: absolute;
   margin-left: 70%;
   z-index: 1;
+  border-radius: 20px;
+}
+.createNewPopUp div {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin: 10px;
+}
+.createNewPopUp div button {
+  color: rgb(41, 110, 110);
 }
 
 .navigationBar {

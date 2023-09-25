@@ -15,14 +15,16 @@
     <nav class="navigation">
         <img src="lines.png" alt="" onclick="navBarToggle()" class="lineIcon">
         <div id="navigation">
-        <div id="createNewButton" onclick="openPopUp()">Create New</div>  <!--onclick="openPopUp()"-->
+        <div id="createNewButton" onclick="openPopUp()">Add New List</div>
         <div id="peekaboo">
             <div>
                 <div>New List Name Here: </div>
-                <div>x</div>
+                <div id="xClose" onclick="closeXButton()">Close</div>
             </div>
+            <div>
             <input id="listNameInput">
             <button id="listNameButton">Done</button>
+        </div>
         </div>
         <div>My lists: </div>
         <div class="listOfLists">
