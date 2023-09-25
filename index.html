@@ -9,13 +9,15 @@
     <title>Todo :)</title>
 </head>
 <body>
+    
    <div class="all">
+    
     <nav class="navigation">
-        <img src="lines.png" alt="" class="lineIcon">
-        <div class="navigationBar">
+        <img src="lines.png" alt="" onclick="navBarToggle()" class="lineIcon">
+        <div id="navigation">
         <div id="createNewButton" onclick="openPopUp()">Create New</div>  <!--onclick="openPopUp()"-->
         <div id="peekaboo">
-            <div><!--addd tailwind you whreo-->
+            <div>
                 <div>New List Name Here: </div>
                 <div>x</div>
             </div>
@@ -48,6 +50,8 @@
         </div>
     </div>
    </div>
+  
+   <img src="dark-gray-background.webp" alt="" class="background">
    <script defer src="todoApp.js"></script>
    <!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>-->
 </body>

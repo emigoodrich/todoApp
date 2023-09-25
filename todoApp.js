@@ -1,18 +1,28 @@
 
 var createNewButton = document.getElementById('createNewButton');
 var originalPopUp = document.getElementById('peekaboo');
-originalPopUp.className = 'createNewPopUpHidden';
+originalPopUp.className = 'hidden';
 function openPopUp() {
-    if (originalPopUp.className === 'createNewPopUpHidden' ) {
+    if (originalPopUp.className === 'hidden' ) {
         
         originalPopUp.className = 'createNewPopUp';
         
     } else {
-        originalPopUp.className = 'createNewPopUpHidden';
+        originalPopUp.className = 'hidden';
     }
    
 }
+var togglingNavigation = document.getElementById('navigation');
+togglingNavigation.className = 'hidden';
+function navBarToggle() {
+    if (togglingNavigation.className === 'hidden') {
+        togglingNavigation.className = 'navigationBar';
 
+    } else {
+        togglingNavigation.className = 'hidden';
+        originalPopUp.className = 'hidden';
+    }
+}
 
 
 
