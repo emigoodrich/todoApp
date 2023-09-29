@@ -10,12 +10,13 @@
 </head>
 <body>
     
-   <div class="all">
+   <div class="row all">
     
-    <nav class="navigation">
+    <nav class="col-xs-4 col-sm-3 col-md-3 col-lg-2 navigation">
+        
         <img src="lines.png" alt="" onclick="navBarToggle()" class="lineIcon">
         <div id="navigation">
-        <div id="createNewButton" onclick="openPopUp()">Add New List</div>
+        <div id="createNewButton" onclick="openPopUp()">Add New List  +</div>
         <div id="peekaboo">
             <div>
                 <div>New List Name Here: </div>
@@ -27,43 +28,39 @@
         </div>
         </div>
         <div>My lists: </div>
-        <div class="listOfLists">
+        <div>
 
         </div>
         </div>
     </nav>
-    
+    <div class="col-lg-10 mainItem">
+        <div>
+            <div id="tippyTop">
+                <h1 id="listTitle">Test Title</h1>
+            <div id="createNewTodo" onclick="todoCreate()">create new todo :)</div>
 
-    <div class="main">
-        <div id="listTitle">test</div>
-        <div class="col">
-            <div class="col-sm-4 col-md-8 col-lg-6 listItemBox">
-                <button><img src="normalBox.png" alt="" id="checkboxIcon"></button>
-                <p class="listItem">Get driver's license</p>
+            <div id="popUpNewTodo">
+                <div>
+                    <div>New Todo Name Here: </div>
+                    <div id="todoClose" onclick="closeXButtonTodo()">Close</div>
+                </div>
+                <div>
+                <input id="todoNameInput">
+                <button id="todoNameButton">Done</button>
             </div>
-            <div class="col-sm-4 listItemBox">
-                <img src="normalBox.png" alt="" id="checkboxIcon">
-                <p class="listItem">Get a life</p>
+          </div>
             </div>
-            <div class="col-sm-4 listItemBox">
-                <img src="normalBox.png" alt="" id="checkboxIcon">
-                <p class="listItem">Die</p>
+            <div id="theList">
+                <div class="listItemBox">
+                   <div>blah</div>
+                </div>
             </div>
         </div>
     </div>
-   </div>
-  
+</div>
    <img src="dark-gray-background.webp" alt="" class="background">
    <script defer src="todoApp.js"></script>
-   <!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>-->
+   
 </body>
 </html>
 
-
-<!--function openPopUp() {
-
-    
-    
-    createPopUp.classList.toggle('createNewPopUp');
-}
-openPopUp();-->

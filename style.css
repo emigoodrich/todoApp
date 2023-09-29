@@ -3,16 +3,16 @@
   flex-direction: row;
   position: absolute;
   color: #ffc0cb;
+  width: 100%;
 }
 
-.main {
-  margin-left: 200px;
-  margin-right: 30px;
-  width: 82%;
+.mainItem {
+  background-color: none;
+  width: 100vw;
 }
 
 #listTitle {
-  font-size: 80px;
+  font-size: 50px;
   color: rgb(41, 110, 110);
 }
 
@@ -23,6 +23,8 @@
   align-content: center;
   padding-top: 12px;
   position: relative;
+  -webkit-backdrop-filter: blur(3px);
+          backdrop-filter: blur(3px);
 }
 
 #checkboxIcon {
@@ -47,7 +49,7 @@
   height: 150px;
   display: block;
   position: absolute;
-  margin-left: 70%;
+  font-size: 14px;
   z-index: 1;
   border-radius: 20px;
 }
@@ -57,22 +59,64 @@
   justify-content: space-between;
   margin: 10px;
 }
-.createNewPopUp div button {
+.createNewPopUp div button, .createNewPopUp div input {
   color: rgb(41, 110, 110);
 }
 
 .navigationBar {
   background-color: rgb(41, 110, 110);
-  width: 250%;
   height: 100vh;
   color: #ffc0cb;
+  font-size: 15px;
+  padding: 17px;
   padding-top: 30px;
-  padding-left: 10px;
+  display: flex;
+  flex-direction: column;
+}
+
+body {
+  margin: 0;
+  width: 100%;
 }
 
 .background {
+  margin: 0;
   height: 100vh;
+  width: 100vw;
+  -o-object-fit: inherit;
+     object-fit: inherit;
+  position: absolute;
+  z-index: -1;
+}
+
+#tippyTop {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
   width: 100%;
-  -o-object-fit: cover;
-     object-fit: cover;
+  background-color: none;
+}
+
+#createNewTodo {
+  margin-top: 50px;
+}
+
+.forNewTodos {
+  color: rgb(41, 110, 110);
+  background-color: #ffc0cb;
+  position: absolute;
+  margin: auto;
+  margin-top: 30px;
+  width: 250px;
+  height: 150px;
+  font-size: 14px;
+  z-index: 1;
+  border-radius: 20px;
+  margin-right: 10%;
+}
+.forNewTodos div {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin: 10px;
 }/*# sourceMappingURL=style.css.map */
