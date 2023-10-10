@@ -119,4 +119,8 @@ body {
   flex-direction: row;
   justify-content: space-between;
   margin: 10px;
+}
+
+.coloredList {
+  color: orange;
 }/*# sourceMappingURL=style.css.map */
