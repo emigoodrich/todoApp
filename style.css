@@ -123,4 +123,9 @@ body {
 
 .coloredList {
   color: orange;
+}
+
+a {
+  color: orange;
+  text-decoration: none;
 }/*# sourceMappingURL=style.css.map */
