@@ -97,7 +97,7 @@ body {
   background-color: none;
 }
 
-#createNewTodo {
+.createNewTodoClass {
   margin-top: 50px;
 }
 
@@ -121,11 +121,49 @@ body {
   margin: 10px;
 }
 
-.coloredList {
-  color: orange;
+.normalListColor {
+  color: #ffc0cb;
+  text-decoration: none;
 }
 
-a {
-  color: orange;
+.normalListColor:hover {
+  color: #ffc0cb;
   text-decoration: none;
+}
+
+.completedTodo {
+  color: gray;
+}
+
+.deleteTodoButton {
+  color: rgb(41, 110, 110);
+}
+
+.todoCompleteButton {
+  background-color: #ffc0cb;
+  height: 15px;
+  border-radius: 10px;
+}
+
+.theTodoClass {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.todoWords {
+  margin-left: 15px;
+}
+
+.listName, .chosenListClass {
+  background-color: white;
+  margin-top: 5px;
+  padding-left: 2px;
+  border-radius: 3px;
+}
+
+.chosenListClass {
+  background-color: gray;
+  box-shadow: 2px 2px;
 }/*# sourceMappingURL=style.css.map */
