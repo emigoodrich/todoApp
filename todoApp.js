@@ -1,4 +1,5 @@
 
+
 var createNewButton = document.getElementById('createNewButton');
 var originalPopUp = document.getElementById('peekaboo');
 var createNewTodo = document.getElementById('createNewTodo');
@@ -56,44 +57,31 @@ let listNameButton = document.getElementById('listNameButton');
 
 
 
-//var changeTodo = null;
+var changeTodo = null;
 var currentlyClickedTodo = null;
-var completion = false;
 var todoIdForRemoving = null;
 var currentlyClickedList = null;
-var todoList = [];
 function onListClick(id) {
     currentlyClickedList = lists.find(l => l.id === id);
-    todoList = currentlyClickedList.todoList
-    if (todoList) {
-    currentlyClickedTodo = todoList.find(l => l.id === id);
-    todoIdForRemoving = currentlyClickedTodo.id;
-    completion = currentlyClickedTodo.completed;
-    changeTodo = document.getElementById(`changeTodo${currentlyClickedTodo.id}`)
-    }
+   
     render();
 }
 
 
 
 
-function completedTodo() {
-    completion = true;
-    if (completion === true) {
-        console.log('its tru')
-        changeTodo.className = ''
-        
-    }
+function completedTodo(id) {
+    var todoToComplete = currentlyClickedList.todoList.find(td => td.id === id);
+    todoToComplete.completed = true;    
     render();
 }
 
-function deleteTodo() {
-    
-    let eliminated = todoList.filter(x => {
-        return x.id != todoIdForRemoving;
-    })
-    console.log(eliminated)
-    console.log(todoIdForRemoving)
+function deleteTodo(id) {
+    let filteredList = currentlyClickedList.todoList.filter(x => {
+        return x.id !== id;
+    });
+    currentlyClickedList.todoList = filteredList;
+    render();
 }
 function render() {
     
@@ -122,17 +110,38 @@ function render() {
     
 
     let todosHtml = '<ul class="list-group-flush">';
-    todoList.forEach((todo) => {
-        todosHtml += `<li class="list-group-item"><span class="theTodoClass"><span><span><button onclick="completedTodo(${todo.id})" class="todoCompleteButton"></button></span><span class="todoWords" id="changeTodo${todo.id}">${todo.name}</span></span><span class="deleteTodoButton" onclick="deleteTodo()">X</span></span></li>`;
+    currentlyClickedList.todoList.forEach((todo) => {
+        if (todo.completed) {
+            todosHtml += `<li class="list-group-item"><span class="theTodoClassCompleted"><span><span>don</span><span class="todoWords" id="changeTodo${todo.id}">${todo.name}</span></span><span class="deleteTodoButton" onclick="deleteTodo(${todo.id})">X</span></span></li>`;
+        }
+        else {
+            todosHtml += `<li class="list-group-item"><span class="theTodoClass"><span><span><button onclick="completedTodo(${todo.id})" class="todoCompleteButton"></button></span><span class="todoWords" id="changeTodo${todo.id}">${todo.name}</span></span><span class="deleteTodoButton" onclick="deleteTodo()">X</span></span></li>`;
+        }
+
     });
 
     document.getElementById('theTodoList').innerHTML = todosHtml;
-
+    saveLists();
 }
 var listNameInput = document.getElementById('listNameInput');
 
 var lists = [];
+const storageKey = 'myLists';
+function saveLists() {
+    const dataToSave = JSON.stringify(lists);
+    window.localStorage.setItem(storageKey, dataToSave);
+}
 
+function getLists() {
+    try {
+        const stringData = window.localStorage.getItem(storageKey);
+        lists = JSON.parse(stringData);
+        render();
+    }
+    catch {
+
+    }
+}
 listNameButton.addEventListener('click', function creatingList() {
     
     const text = listNameInput.value;
@@ -160,7 +169,7 @@ todoNameButton.addEventListener('click', function addTodo() {
     todoNameInput.value = "";
     var ticks = Date.now();
     if (todoText) {
-        todoList.push({
+        currentlyClickedList.todoList.push({
             id: ticks,
             name: todoText,
             completed: false
@@ -171,3 +180,5 @@ todoNameButton.addEventListener('click', function addTodo() {
     }
 
 })
+
+getLists();

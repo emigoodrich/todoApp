@@ -148,7 +148,13 @@ body {
     border-radius: 3px;
     
 }
+a {
+    width: 100%;
+}
 .chosenListClass {
     background-color: gray;
     box-shadow: 2px 2px;
+}
+.theTodoClassCompleted {
+    color: gray;
 }
