@@ -16,21 +16,10 @@
   color: rgb(41, 110, 110);
 }
 
-.listItemBox {
-  border: solid #ffc0cb 3px;
+.createNewButton {
   display: flex;
   flex-direction: row;
-  align-content: center;
-  padding-top: 12px;
-  position: relative;
-  -webkit-backdrop-filter: blur(3px);
-          backdrop-filter: blur(3px);
-}
-
-#checkboxIcon {
-  height: 20px;
-  margin-right: 10px;
-  margin-left: 5px;
+  justify-content: space-between;
 }
 
 .lineIcon {
@@ -124,6 +113,10 @@ body {
 .normalListColor {
   color: #ffc0cb;
   text-decoration: none;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
 }
 
 .normalListColor:hover {
@@ -131,15 +124,11 @@ body {
   text-decoration: none;
 }
 
-.completedTodo {
-  color: gray;
-}
-
 .deleteTodoButton {
   color: rgb(41, 110, 110);
 }
 
-.todoCompleteButton {
+.todoCompleteButton, .checkmark {
   background-color: #ffc0cb;
   height: 15px;
   border-radius: 10px;
@@ -173,5 +162,37 @@ a {
 }
 
 .theTodoClassCompleted {
-  color: gray;
+  color: #808080;
+  text-decoration: line-through;
+}
+
+.smallNavIcons {
+  height: 15px;
+  margin-top: 3px;
+}
+
+.listOptionsPopUp, .editPopUpTodoVisible {
+  background-color: gray;
+  color: #ffc0cb;
+  width: 250px;
+  height: 150px;
+  display: block;
+  position: absolute;
+  font-size: 14px;
+  z-index: 1;
+  border-radius: 20px;
+  margin-left: 225px;
+}
+
+.listOptionsClass {
+  background-color: gray;
+  color: #ffc0cb;
+  width: 150px;
+  height: 80px;
+  display: block;
+  position: absolute;
+  font-size: 14px;
+  z-index: 1;
+  border-radius: 20px;
+  padding: 10px;
 }/*# sourceMappingURL=style.css.map */

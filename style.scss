@@ -17,20 +17,11 @@ width: 100%;
    font-size: 50px;
     color: $myTeal;
 }
-.listItemBox {
-    border: solid $myPink 3px;
+
+.createNewButton {
     display: flex;
     flex-direction: row;
-    align-content: center;
-    padding-top: 12px;
-    position: relative;
-    backdrop-filter: blur(3px);
-}
-#checkboxIcon {
-    height: 20px;
-    
-    margin-right: 10px;
-    margin-left: 5px;
+    justify-content: space-between;
 }
 .lineIcon {
     height: 30px;
@@ -115,18 +106,19 @@ body {
 .normalListColor {
     color: $myPink;
     text-decoration: none;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
 }
 .normalListColor:hover {
     color: $myPink;
     text-decoration: none;
 }
-.completedTodo {
-    color: gray;
-}
 .deleteTodoButton {
     color:$myTeal;
 }
-.todoCompleteButton {
+.todoCompleteButton, .checkmark {
     background-color: $myPink;
     height: 15px;
     border-radius: 10px;
@@ -146,7 +138,7 @@ body {
     margin-top: 5px;
     padding-left: 2px;
     border-radius: 3px;
-    
+   
 }
 a {
     width: 100%;
@@ -156,5 +148,34 @@ a {
     box-shadow: 2px 2px;
 }
 .theTodoClassCompleted {
-    color: gray;
+    color: #808080;
+    text-decoration: line-through;
+}
+.smallNavIcons {
+    height: 15px;
+    margin-top: 3px;
+}
+.listOptionsPopUp, .editPopUpTodoVisible {
+    background-color: gray;
+    color: $myPink;
+    width: 250px;
+    height: 150px;
+    display: block;
+    position: absolute;
+    font-size: 14px;
+    z-index: 1;
+    border-radius: 20px;
+    margin-left: 225px;
+}
+.listOptionsClass {
+    background-color: gray;
+    color: $myPink;
+    width: 150px;
+    height: 80px;
+    display: block;
+    position: absolute;
+    font-size: 14px;
+    z-index: 1;
+    border-radius: 20px;
+    padding: 10px;
 }

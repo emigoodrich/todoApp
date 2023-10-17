@@ -1,10 +1,12 @@
-
-
+var editPopUpTodo = document.getElementById('editPopUpTodo');
+var listOptionsPopUp = document.getElementById('listOptionsPopUp');
 var createNewButton = document.getElementById('createNewButton');
 var originalPopUp = document.getElementById('peekaboo');
 var createNewTodo = document.getElementById('createNewTodo');
+editPopUpTodo.className = 'hidden';
 createNewTodo.className = 'hidden';
 originalPopUp.className = 'hidden';
+listOptionsPopUp.className = 'hidden';
 function openPopUp() {
     if (originalPopUp.className === 'hidden') {
 
@@ -49,15 +51,47 @@ function closeXButtonTodo() {
     }
 }
 
-
+function enableDragSort(listClass) {
+    const sortableLists = document.getElementsByClassName(listClass);
+    Array.prototype.map.call(sortableLists, (list) => {enableDragList(list)});
+  }
+  
+  function enableDragList(list) {
+    Array.prototype.map.call(list.children, (item) => {enableDragItem(item)});
+  }
+  
+  function enableDragItem(item) {
+    item.setAttribute('draggable', true)
+    item.ondrag = handleDrag;
+    item.ondragend = handleDrop;
+  }
+  
+  function handleDrag(item) {
+    const selectedItem = item.target,
+          list = selectedItem.parentNode,
+          x = event.clientX,
+          y = event.clientY;
+    
+    selectedItem.classList.add('drag-sort-active');
+    let swapItem = document.elementFromPoint(x, y) === null ? selectedItem : document.elementFromPoint(x, y);
+    
+    if (list === swapItem.parentNode) {
+      swapItem = swapItem !== selectedItem.nextSibling ? swapItem : swapItem.nextSibling;
+      list.insertBefore(selectedItem, swapItem);
+    }
+  }
+  
+  function handleDrop(item) {
+    item.target.classList.remove('drag-sort-active');
+  }
+  
+  (()=> {enableDragSort('listOfLists')})();
 
 
 
 let listNameButton = document.getElementById('listNameButton');
 
-
-
-var changeTodo = null;
+var chosenId = null;
 var currentlyClickedTodo = null;
 var todoIdForRemoving = null;
 var currentlyClickedList = null;
@@ -67,9 +101,49 @@ function onListClick(id) {
     render();
 }
 
-
-
-
+//for later!!!
+function togglingListOptions() {
+    if (listOptionsPopUp.className === 'hidden') {
+        listOptionsPopUp.className = 'listOptionsClass';
+    } else {
+        listOptionsPopUp.className = 'hidden';
+    }
+}
+function changingList(id) {
+    togglingListOptions();
+    chosenId = id;
+    console.log(chosenId)
+}
+function deletingList() {
+    let filteredListOfLists = lists.filter(x => {
+        return x.id !== chosenId;
+    });
+    lists = filteredListOfLists
+    render();
+}
+var newTodoNameInput = document.getElementById('newTodoNameInput');
+var currentlyEditingTodo = null;
+function editTheTodoStart(id) {
+    //another function in ere but im tired bruh
+    if (editPopUpTodo.className === 'hidden') {
+        editPopUpTodo.className = 'editPopUpTodoVisible'
+    } else {
+        editPopUpTodo.className = 'hidden'
+    }
+    currentlyEditingTodo = currentlyClickedList.todoList.find(td => td.id === id)
+}
+function closeXButtonEditTodo() {
+    editPopUpTodo.className = 'hidden';
+}
+function changingEditTodo() {
+    if (newTodoNameInput.value == "") {
+        alert('hey! fill out the input before pressing done!')
+    } else {
+    currentlyEditingTodo.name = newTodoNameInput.value
+newTodoNameInput.value = ""
+    closeXButtonEditTodo(); }
+        render();
+}
 function completedTodo(id) {
     var todoToComplete = currentlyClickedList.todoList.find(td => td.id === id);
     todoToComplete.completed = true;    
@@ -87,7 +161,7 @@ function render() {
     
     let listsHtml = '<ul class="list-group">';
     lists.forEach((list) => {
-        listsHtml += `<li class="listName" id="theCurrentList${list.id}"><a href="#" class="normalListColor" onclick="onListClick(${list.id})">${list.name}</a></li>`;
+        listsHtml += `<li class="listName" id="theCurrentList${list.id}"><a href="#" class="normalListColor" onclick="onListClick(${list.id})">${list.name} <img src="three_dots.png" alt="three dots for opening list options" class="smallNavIcons" onclick="changingList(${list.id})"></a></li>`;
         
     
     });
@@ -110,16 +184,17 @@ function render() {
     
 
     let todosHtml = '<ul class="list-group-flush">';
+    if (currentlyClickedList) {
     currentlyClickedList.todoList.forEach((todo) => {
         if (todo.completed) {
-            todosHtml += `<li class="list-group-item"><span class="theTodoClassCompleted"><span><span>don</span><span class="todoWords" id="changeTodo${todo.id}">${todo.name}</span></span><span class="deleteTodoButton" onclick="deleteTodo(${todo.id})">X</span></span></li>`;
+            todosHtml += `<li class="list-group-item"><span class="theTodoClassCompleted"><span><span><img src="checkmark.png" alt="checkmark" class="checkmark"></span><span class="todoWords">${todo.name}</span></span><span class="deleteTodoButton" onclick="deleteTodo(${todo.id})">X</span></span></li>`;
         }
         else {
-            todosHtml += `<li class="list-group-item"><span class="theTodoClass"><span><span><button onclick="completedTodo(${todo.id})" class="todoCompleteButton"></button></span><span class="todoWords" id="changeTodo${todo.id}">${todo.name}</span></span><span class="deleteTodoButton" onclick="deleteTodo()">X</span></span></li>`;
+            todosHtml += `<li class="list-group-item"><span class="theTodoClass"><span><span><button onclick="completedTodo(${todo.id})" class="todoCompleteButton"></button></span><span class="todoWords">${todo.name}</span></span><span><span onclick="editTheTodoStart(${todo.id})">edit</span><span class="deleteTodoButton" onclick="deleteTodo(${todo.id})">X</span></span></span></li>`;
         }
 
     });
-
+    }
     document.getElementById('theTodoList').innerHTML = todosHtml;
     saveLists();
 }
