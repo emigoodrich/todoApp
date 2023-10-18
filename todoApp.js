@@ -3,6 +3,8 @@ var listOptionsPopUp = document.getElementById('listOptionsPopUp');
 var createNewButton = document.getElementById('createNewButton');
 var originalPopUp = document.getElementById('peekaboo');
 var createNewTodo = document.getElementById('createNewTodo');
+var listEditPopUp = document.getElementById('listEditPopUp');
+listEditPopUp.className = 'hidden';
 editPopUpTodo.className = 'hidden';
 createNewTodo.className = 'hidden';
 originalPopUp.className = 'hidden';
@@ -51,44 +53,36 @@ function closeXButtonTodo() {
     }
 }
 
-function enableDragSort(listClass) {
-    const sortableLists = document.getElementsByClassName(listClass);
-    Array.prototype.map.call(sortableLists, (list) => {enableDragList(list)});
-  }
-  
-  function enableDragList(list) {
-    Array.prototype.map.call(list.children, (item) => {enableDragItem(item)});
-  }
-  
-  function enableDragItem(item) {
-    item.setAttribute('draggable', true)
-    item.ondrag = handleDrag;
-    item.ondragend = handleDrop;
-  }
-  
-  function handleDrag(item) {
-    const selectedItem = item.target,
-          list = selectedItem.parentNode,
-          x = event.clientX,
-          y = event.clientY;
-    
-    selectedItem.classList.add('drag-sort-active');
-    let swapItem = document.elementFromPoint(x, y) === null ? selectedItem : document.elementFromPoint(x, y);
-    
-    if (list === swapItem.parentNode) {
-      swapItem = swapItem !== selectedItem.nextSibling ? swapItem : swapItem.nextSibling;
-      list.insertBefore(selectedItem, swapItem);
-    }
-  }
-  
-  function handleDrop(item) {
-    item.target.classList.remove('drag-sort-active');
-  }
-  
-  (()=> {enableDragSort('listOfLists')})();
+function dragStart() {
+    console.log('Event: ', 'dragstart')
+}
+function dragEnter() {
+    console.log('Event: ', 'dragenter')
+}
+function dragLeave() {
+    console.log('Event: ', 'dragleave')
+}
+function dragOver() {
+    console.log('Event: ', 'dragover')
+}
+function dragDrop() {
+    console.log('Event: ', 'drop')
+}
+function drag() {
+    const draggables = document.querySelectorAll('.list-group-item')
+    const dragListItems = document.querySelectorAll('.theTodoList li')
 
+    draggables.forEach(draggable => {
+        draggable.addEventListener('dragstart', dragStart)
+    })
 
-
+    dragListItems.forEach(item => {
+        item.addEventListener('dragover', dragOver) 
+        item.addEventListener('drop', dragDrop)
+        item.addEventListener('dragenter', dragEnter)
+        item.addEventListener('dragleave', dragLeave)
+    })
+}
 let listNameButton = document.getElementById('listNameButton');
 
 var chosenId = null;
@@ -109,16 +103,35 @@ function togglingListOptions() {
         listOptionsPopUp.className = 'hidden';
     }
 }
+var currentlyEditingList
 function changingList(id) {
     togglingListOptions();
     chosenId = id;
-    console.log(chosenId)
+    currentlyEditingList = lists.find(l => l.id === chosenId)
+    
+}
+function editingListName() {
+    listEditPopUp.className = 'editPopUpTodoVisible'
+}
+function submitListEdit() {
+    if (listEditInput.value == "" ) {
+        alert('hey! fill out the input before pressing done!')
+    } else {
+        currentlyEditingList.name = listEditInput.value;
+        listEditInput.value = ""
+
+    }
+    listEditPopUp.className = 'hidden'
 }
 function deletingList() {
     let filteredListOfLists = lists.filter(x => {
         return x.id !== chosenId;
     });
     lists = filteredListOfLists
+    currentlyClickedList = null;
+    createNewTodo.className = 'hidden'
+    document.getElementById('listTitle').innerHTML = null;
+    togglingListOptions();
     render();
 }
 var newTodoNameInput = document.getElementById('newTodoNameInput');
@@ -172,16 +185,13 @@ function render() {
 
 
     if (currentlyClickedList) {
-    let currentListName = currentlyClickedList.name;
-    document.getElementById('listTitle').innerHTML = currentListName;
+        let currentListName = currentlyClickedList.name;
+        document.getElementById('listTitle').innerHTML = currentListName;
         document.getElementById(`theCurrentList${currentlyClickedList.id}`).className = 'chosenListClass'
-    if (currentlyClickedTodo) {
-    
-    
-    }
+
     createNewTodo.className = 'createNewTodoClass';
     }
-    
+
 
     let todosHtml = '<ul class="list-group-flush">';
     if (currentlyClickedList) {
@@ -230,7 +240,7 @@ listNameButton.addEventListener('click', function creatingList() {
             completed: false,
             todoList: []
         })
-        
+    
         render();
         originalPopUp.className = 'hidden';
     }
@@ -255,5 +265,10 @@ todoNameButton.addEventListener('click', function addTodo() {
     }
 
 })
-
+try {
+    render();
+}
+catch(err) {
+    console.log(err.message)
+}
 getLists();

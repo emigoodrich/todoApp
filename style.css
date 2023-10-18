@@ -2,7 +2,7 @@
   display: flex;
   flex-direction: row;
   position: absolute;
-  color: #ffc0cb;
+  color: #ff94a6;
   width: 100%;
 }
 
@@ -55,7 +55,7 @@
 .navigationBar {
   background-color: rgb(41, 110, 110);
   height: 100vh;
-  color: #ffc0cb;
+  color: #ff94a6;
   font-size: 15px;
   padding: 17px;
   padding-top: 30px;
@@ -92,7 +92,7 @@ body {
 
 .forNewTodos {
   color: rgb(41, 110, 110);
-  background-color: #ffc0cb;
+  background-color: #ff94a6;
   position: absolute;
   margin: auto;
   margin-top: 30px;
@@ -111,7 +111,7 @@ body {
 }
 
 .normalListColor {
-  color: #ffc0cb;
+  color: #ff94a6;
   text-decoration: none;
   width: 100%;
   display: flex;
@@ -120,7 +120,7 @@ body {
 }
 
 .normalListColor:hover {
-  color: #ffc0cb;
+  color: #ff94a6;
   text-decoration: none;
 }
 
@@ -129,7 +129,7 @@ body {
 }
 
 .todoCompleteButton, .checkmark {
-  background-color: #ffc0cb;
+  background-color: #ff94a6;
   height: 15px;
   border-radius: 10px;
 }
@@ -173,7 +173,7 @@ a {
 
 .listOptionsPopUp, .editPopUpTodoVisible {
   background-color: gray;
-  color: #ffc0cb;
+  color: #ff94a6;
   width: 250px;
   height: 150px;
   display: block;
@@ -186,7 +186,7 @@ a {
 
 .listOptionsClass {
   background-color: gray;
-  color: #ffc0cb;
+  color: #ff94a6;
   width: 150px;
   height: 80px;
   display: block;

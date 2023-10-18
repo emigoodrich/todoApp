@@ -32,12 +32,21 @@
 
         </div>
         <div id="listOptionsPopUp">
-            <div onclick="togglingListOptions">X</div>
+            <div onclick="togglingListOptions()">X</div>
             <div onclick="deletingList()">Delete List</div>
-            <div>Edit List Name</div>
+            <div onclick="editingListName()">Edit List Name</div>
         </div>
         </div>
-       
+        <div id="listEditPopUp">
+            <div>
+                <div>List Name Replacement Here: </div>
+                <div id="listEditClose" onclick="listEditClose()">Close</div>
+            </div>
+            <div>
+            <input id="listEditInput">
+            <button onclick="submitListEdit()">Done</button>
+        </div>
+      </div>
     </nav>
     <div class="col-lg-10 mainItem">
         <div>
@@ -56,7 +65,7 @@
             </div>
           </div>
             </div>
-            <div id="theTodoList">
+            <div id="theTodoList" class="theTodoList">
                 
             </div>
             <div id="editPopUpTodo">
