@@ -16,7 +16,7 @@
         
         <img src="lines.png" alt="" onclick="navBarToggle()" class="lineIcon">
         <div id="navigation">
-        <div id="createNewButton" onclick="openPopUp()">Add New List <img src="plus_sign.png" alt="plus sign for adding new list" class="smallNavIcons"></div>
+        <div id="createNewButton" class="creatingButtons"onclick="openPopUp()">Add New List <img src="plus_sign.png" alt="plus sign for adding new list" class="smallNavIcons"></div>
         <div id="peekaboo">
             <div>
                 <div>New List Name Here: </div>
@@ -36,7 +36,6 @@
             <div onclick="deletingList()">Delete List</div>
             <div onclick="editingListName()">Edit List Name</div>
         </div>
-        </div>
         <div id="listEditPopUp">
             <div>
                 <div>List Name Replacement Here: </div>
@@ -47,12 +46,14 @@
             <button onclick="submitListEdit()">Done</button>
         </div>
       </div>
+        </div>
+       
     </nav>
     <div class="col-lg-10 mainItem">
         <div>
             <div id="tippyTop">
                 <h1 id="listTitle"></h1>
-            <div id="createNewTodo" onclick="todoCreate()">create new todo :)</div>
+            <div class="creatingButtons" id="createNewTodo"  onclick="todoCreate()">create new todo :)</div>
 
             <div id="popUpNewTodo">
                 <div>
@@ -69,7 +70,7 @@
                 
             </div>
             <div id="editPopUpTodo">
-                <div>
+                <div >
                     <div>Change todo name here: </div>
                     <div id="todoClose" onclick="closeXButtonEditTodo()">Close</div>
                 </div>

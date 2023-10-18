@@ -9,3 +9,4 @@ How to use:
 -After creating the new list, the list's name will show up in the nav bar and you can click on it to open the list
 -After opening the list, in the right corner there is a 'create new todo :)' button that can be clicked to enter a new todo name and add
 -After being added, the todos can be completed, reorganized, or deleted/cleared
+-The lists themselves can be deleted or altered, or selected to look at their list information. You must select a list name for it to show up

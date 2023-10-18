@@ -52,7 +52,7 @@ function closeXButtonTodo() {
         popUpNewTodo.value = "";
     }
 }
-
+//this didn't work rip
 function dragStart() {
     console.log('Event: ', 'dragstart')
 }
@@ -95,7 +95,7 @@ function onListClick(id) {
     render();
 }
 
-//for later!!!
+
 function togglingListOptions() {
     if (listOptionsPopUp.className === 'hidden') {
         listOptionsPopUp.className = 'listOptionsClass';
@@ -110,18 +110,29 @@ function changingList(id) {
     currentlyEditingList = lists.find(l => l.id === chosenId)
     
 }
-function editingListName() {
-    listEditPopUp.className = 'editPopUpTodoVisible'
+function editingListName(chosenId) {
+    if (listEditPopUp.className === 'hidden') {
+        listEditPopUp.className = 'createNewPopUp'
+    } else {
+        listEditPopUp.className = 'hidden'
+    }
 }
+function listEditClose() {
+    editingListName();
+} 
+
 function submitListEdit() {
     if (listEditInput.value == "" ) {
         alert('hey! fill out the input before pressing done!')
     } else {
-        currentlyEditingList.name = listEditInput.value;
+        
+        currentlyClickedList.name = listEditInput.value;
         listEditInput.value = ""
-
+        
     }
     listEditPopUp.className = 'hidden'
+    listOptionsPopUp.className = 'hidden'
+    render();
 }
 function deletingList() {
     let filteredListOfLists = lists.filter(x => {
@@ -139,7 +150,7 @@ var currentlyEditingTodo = null;
 function editTheTodoStart(id) {
     //another function in ere but im tired bruh
     if (editPopUpTodo.className === 'hidden') {
-        editPopUpTodo.className = 'editPopUpTodoVisible'
+        editPopUpTodo.className = 'createNewPopUp'
     } else {
         editPopUpTodo.className = 'hidden'
     }
@@ -159,7 +170,11 @@ newTodoNameInput.value = ""
 }
 function completedTodo(id) {
     var todoToComplete = currentlyClickedList.todoList.find(td => td.id === id);
-    todoToComplete.completed = true;    
+    if (todoToComplete.completed === true) {
+        todoToComplete.completed = false;
+    } else if (todoToComplete.completed === false) {
+        todoToComplete.completed = true;
+    }
     render();
 }
 
@@ -197,10 +212,10 @@ function render() {
     if (currentlyClickedList) {
     currentlyClickedList.todoList.forEach((todo) => {
         if (todo.completed) {
-            todosHtml += `<li class="list-group-item"><span class="theTodoClassCompleted"><span><span><img src="checkmark.png" alt="checkmark" class="checkmark"></span><span class="todoWords">${todo.name}</span></span><span class="deleteTodoButton" onclick="deleteTodo(${todo.id})">X</span></span></li>`;
+            todosHtml += `<li class="list-group-item"><span class="theTodoClassCompleted"><span><span><img src="checkmark.png" alt="checkmark" onclick="completedTodo(${todo.id})" class="checkmark"></span><span class="todoWordsCompleted">${todo.name}</span></span><span class="deleteTodoButton" onclick="deleteTodo(${todo.id})">X</span></span></li>`;
         }
         else {
-            todosHtml += `<li class="list-group-item"><span class="theTodoClass"><span><span><button onclick="completedTodo(${todo.id})" class="todoCompleteButton"></button></span><span class="todoWords">${todo.name}</span></span><span><span onclick="editTheTodoStart(${todo.id})">edit</span><span class="deleteTodoButton" onclick="deleteTodo(${todo.id})">X</span></span></span></li>`;
+            todosHtml += `<li class="list-group-item"><span class="theTodoClass"><span><span><button onclick="completedTodo(${todo.id})" class="todoCompleteButton"></button></span><span class="todoWords">${todo.name}</span></span><span class="leftTwoOfTodo"><span onclick="editTheTodoStart(${todo.id})">edit</span><span class="deleteTodoButton" onclick="deleteTodo(${todo.id})">X</span></span></span></li>`;
         }
 
     });
@@ -265,10 +280,10 @@ todoNameButton.addEventListener('click', function addTodo() {
     }
 
 })
-try {
-    render();
-}
-catch(err) {
-    console.log(err.message)
-}
+// try {
+//     render();
+// }
+// catch(err) {
+//     console.log(err.message)
+//  } //this was messing up my local storage but it did hlep
 getLists();

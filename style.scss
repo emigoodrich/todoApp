@@ -17,7 +17,11 @@ width: 100%;
    font-size: 50px;
     color: $myTeal;
 }
-
+.creatingButtons {
+    background-color: white;
+    border-radius: 2px;
+    padding-left: 3px;
+}
 .createNewButton {
     display: flex;
     flex-direction: row;
@@ -133,6 +137,10 @@ body {
 .todoWords {
     margin-left: 15px;
 }
+.todoWordsCompleted {
+    text-decoration: line-through;
+    margin-left: 15px;
+}
 .listName, .chosenListClass {
     background-color: white;
     margin-top: 5px;
@@ -149,23 +157,14 @@ a {
 }
 .theTodoClassCompleted {
     color: #808080;
-    text-decoration: line-through;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
 }
 .smallNavIcons {
     height: 15px;
     margin-top: 3px;
-}
-.listOptionsPopUp, .editPopUpTodoVisible {
-    background-color: gray;
-    color: $myPink;
-    width: 250px;
-    height: 150px;
-    display: block;
-    position: absolute;
-    font-size: 14px;
-    z-index: 1;
-    border-radius: 20px;
-    margin-left: 225px;
 }
 .listOptionsClass {
     background-color: gray;
@@ -178,4 +177,10 @@ a {
     z-index: 1;
     border-radius: 20px;
     padding: 10px;
+}
+.leftTwoOfTodo {
+    display: flex;
+    flex-direction: row;
+    width: 5%;
+    justify-content: space-between;
 }
