@@ -9,6 +9,7 @@ editPopUpTodo.className = 'hidden';
 createNewTodo.className = 'hidden';
 originalPopUp.className = 'hidden';
 listOptionsPopUp.className = 'hidden';
+//set up for all the pop ups, i should've just given them all an id lol
 function openPopUp() {
     if (originalPopUp.className === 'hidden') {
 
@@ -52,7 +53,7 @@ function closeXButtonTodo() {
         popUpNewTodo.value = "";
     }
 }
-//this didn't work rip
+//drag and drop didn't work rip
 function dragStart() {
     console.log('Event: ', 'dragstart')
 }
@@ -95,7 +96,7 @@ function onListClick(id) {
     render();
 }
 
-
+//list changes
 function togglingListOptions() {
     if (listOptionsPopUp.className === 'hidden') {
         listOptionsPopUp.className = 'listOptionsClass';
@@ -145,6 +146,8 @@ function deletingList() {
     togglingListOptions();
     render();
 }
+
+//todo changes
 var newTodoNameInput = document.getElementById('newTodoNameInput');
 var currentlyEditingTodo = null;
 function editTheTodoStart(id) {
@@ -185,8 +188,9 @@ function deleteTodo(id) {
     currentlyClickedList.todoList = filteredList;
     render();
 }
+//remember that if the html doesn't change, you probably didn't put the render at the end!!!
 function render() {
-    
+    //rendering list names and it's edits (if it is edited)
     let listsHtml = '<ul class="list-group">';
     lists.forEach((list) => {
         listsHtml += `<li class="listName" id="theCurrentList${list.id}"><a href="#" class="normalListColor" onclick="onListClick(${list.id})">${list.name} <img src="three_dots.png" alt="three dots for opening list options" class="smallNavIcons" onclick="changingList(${list.id})"></a></li>`;
@@ -207,13 +211,14 @@ function render() {
     createNewTodo.className = 'createNewTodoClass';
     }
 
-
+//redering the todos and their changes (if there is one)
     let todosHtml = '<ul class="list-group-flush">';
     if (currentlyClickedList) {
     currentlyClickedList.todoList.forEach((todo) => {
         if (todo.completed) {
             todosHtml += `<li class="list-group-item"><span class="theTodoClassCompleted"><span><span><img src="checkmark.png" alt="checkmark" onclick="completedTodo(${todo.id})" class="checkmark"></span><span class="todoWordsCompleted">${todo.name}</span></span><span class="deleteTodoButton" onclick="deleteTodo(${todo.id})">X</span></span></li>`;
         }
+        //changing the code on whether or not the task is completed
         else {
             todosHtml += `<li class="list-group-item"><span class="theTodoClass"><span><span><button onclick="completedTodo(${todo.id})" class="todoCompleteButton"></button></span><span class="todoWords">${todo.name}</span></span><span class="leftTwoOfTodo"><span onclick="editTheTodoStart(${todo.id})">edit</span><span class="deleteTodoButton" onclick="deleteTodo(${todo.id})">X</span></span></span></li>`;
         }
@@ -242,6 +247,7 @@ function getLists() {
 
     }
 }
+//pushing list to lists
 listNameButton.addEventListener('click', function creatingList() {
     
     const text = listNameInput.value;
@@ -260,6 +266,7 @@ listNameButton.addEventListener('click', function creatingList() {
         originalPopUp.className = 'hidden';
     }
 })
+//pushing the todos to the todoList of the currentlyClickedList
 var todoNameInput = document.getElementById('todoNameInput');
 var todoNameButton = document.getElementById('todoNameButton');
 todoNameButton.addEventListener('click', function addTodo() {
@@ -269,6 +276,7 @@ todoNameButton.addEventListener('click', function addTodo() {
     todoNameInput.value = "";
     var ticks = Date.now();
     if (todoText) {
+        //pushing the todo to a the current list
         currentlyClickedList.todoList.push({
             id: ticks,
             name: todoText,
